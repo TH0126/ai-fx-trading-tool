@@ -3,12 +3,13 @@ import { Box, Paper, Toolbar, Typography, ToggleButton, ToggleButtonGroup, IconB
 import { createChart, ColorType, IChartApi, ISeriesApi, CandlestickData, LineData, BarData } from 'lightweight-charts';
 import { useMarketStore } from '../../hooks/useMarketStore';
 import { CurrencyPair, Timeframe, CandleData } from '../../types/market-data';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import TimelineIcon from '@mui/icons-material/Timeline';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import ShowChartIcon from '@mui/icons-material/ShowChart';
-import FullscreenIcon from '@mui/icons-material/Fullscreen';
-import SettingsIcon from '@mui/icons-material/Settings';
+// MUIアイコンを安全な方法でインポート
+import TrendingUp from '@mui/icons-material/TrendingUp';
+import Timeline from '@mui/icons-material/Timeline';
+import BarChart from '@mui/icons-material/BarChart';
+import ShowChart from '@mui/icons-material/ShowChart';
+import Fullscreen from '@mui/icons-material/Fullscreen';
+import Settings from '@mui/icons-material/Settings';
 
 interface TradingChartProps {
   currencyPair: CurrencyPair;
@@ -368,35 +369,35 @@ const TradingChart: React.FC<TradingChartProps> = ({
         >
           <ToggleButton value="candlestick" aria-label="candlestick chart">
             <Tooltip title="Candlestick Chart">
-              <TrendingUpIcon />
+              <TrendingUp />
             </Tooltip>
           </ToggleButton>
           <ToggleButton value="line" aria-label="line chart">
             <Tooltip title="Line Chart">
-              <ShowChartIcon />
+              <ShowChart />
             </Tooltip>
           </ToggleButton>
           <ToggleButton value="area" aria-label="area chart">
             <Tooltip title="Area Chart">
-              <TimelineIcon />
+              <Timeline />
             </Tooltip>
           </ToggleButton>
           <ToggleButton value="bar" aria-label="bar chart">
             <Tooltip title="Bar Chart">
-              <BarChartIcon />
+              <BarChart />
             </Tooltip>
           </ToggleButton>
         </ToggleButtonGroup>
 
         <IconButton color="inherit" onClick={handleFullscreen} sx={{ mr: 1 }}>
           <Tooltip title="Fullscreen">
-            <FullscreenIcon />
+            <Fullscreen />
           </Tooltip>
         </IconButton>
         
         <IconButton color="inherit">
           <Tooltip title="Chart Settings">
-            <SettingsIcon />
+            <Settings />
           </Tooltip>
         </IconButton>
       </Toolbar>
