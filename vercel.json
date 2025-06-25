@@ -1,7 +1,10 @@
 {
-  "buildCommand": "npm run build",
+  "version": 2,
+  "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist",
   "framework": "vite",
+  "installCommand": "npm ci",
+  "nodeVersion": "18.x",
   "rewrites": [
     {
       "source": "/(.*)",
@@ -18,5 +21,8 @@
         }
       ]
     }
-  ]
+  ],
+  "env": {
+    "NODE_ENV": "production"
+  }
 } 

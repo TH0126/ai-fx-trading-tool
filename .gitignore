@@ -171,3 +171,4 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST 
+.vercel
