@@ -160,6 +160,26 @@ AI FXトレーディング支援ツールの開発プロジェクト管理ファ
 
 ## 最新の作業 (2025年1月25日)
 
+### 🔧 **GitHub Repository Setup** 🟡 **進行中**
+- **完了項目**:
+  - GitHub CLI (gh) インストール完了 ✅
+  - プロジェクト用 .gitignore ファイル作成 ✅
+  - Gitリポジトリ初期化 (`git init`) 完了 ✅
+  - 全ファイルの追加とステージング 完了 ✅
+  - 詳細な初回コミット作成 完了 ✅
+    - コミットハッシュ: `4c8af6d`
+    - 41ファイル、20,416行の追加
+
+- **現在の状況**:
+  - ✅ ローカルGitリポジトリ準備完了
+  - ⚠️ GitHub CLI認証が必要
+  - 🔄 GitHubリモートリポジトリ作成待ち
+
+- **次のステップ**:
+  1. `gh auth login` でGitHub認証を完了
+  2. `gh repo create ai-fx-trading-tool --public` でリポジトリ作成
+  3. リモートリポジトリの追加とプッシュ
+
 ### 🔧 **Browser Security Policy & API Issues 修正** ✅ **完了**
 - **問題1**: `Refused to set unsafe header "User-Agent"` - ブラウザがAxiosでUser-Agentヘッダー設定を拒否
 - **問題2**: `Failed to fetch intraday data for USD/JPY: Error: No time series data available` - Alpha Vantage APIからのデータ取得失敗
