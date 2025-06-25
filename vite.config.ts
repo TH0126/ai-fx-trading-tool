@@ -4,6 +4,7 @@ import path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.NODE_ENV === 'production' && process.env.GITHUB_PAGES ? '/ai-fx-trading-tool/' : '/',
   plugins: [react()],
   resolve: {
     alias: {

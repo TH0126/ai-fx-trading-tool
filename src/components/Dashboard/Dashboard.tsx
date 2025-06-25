@@ -142,7 +142,6 @@ const Dashboard: React.FC = () => {
                 {majorPairs.map((pair) => {
                   const priceData = realtimePrices[pair];
                   const price = priceData?.price;
-                  const change = priceData?.change || 0;
                   const changePercent = priceData?.changePercent || 0;
                   const isPositive = changePercent >= 0;
                   

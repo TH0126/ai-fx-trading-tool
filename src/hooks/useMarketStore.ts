@@ -204,7 +204,9 @@ export const useMarketStore = create<MarketState>()(
           const rates = await alphaVantageAPI.getMultipleRates(symbols)
           
           Object.entries(rates).forEach(([symbol, rateData]) => {
-            updateRealtimePrice(symbol as CurrencyPair, rateData)
+            if (rateData) {
+              updateRealtimePrice(symbol as CurrencyPair, rateData)
+            }
           })
         } catch (error) {
           console.warn('Multiple rates fetch failed, using demo data:', error)

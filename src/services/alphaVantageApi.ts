@@ -6,20 +6,7 @@ interface AlphaVantageConfig {
   baseUrl: string
 }
 
-interface AlphaVantageQuoteResponse {
-  'Global Quote': {
-    '01. symbol': string
-    '02. open': string
-    '03. high': string
-    '04. low': string
-    '05. price': string
-    '06. volume': string
-    '07. latest trading day': string
-    '08. previous close': string
-    '09. change': string
-    '10. change percent': string
-  }
-}
+
 
 interface AlphaVantageTimeSeriesResponse {
   'Meta Data': {
@@ -86,7 +73,11 @@ class AlphaVantageAPI {
   }
 
   private formatCurrencyPairForAPI(pair: CurrencyPair): { from: string; to: string } {
-    const [from, to] = pair.split('/')
+    const parts = pair.split('/')
+    if (parts.length !== 2 || !parts[0] || !parts[1]) {
+      throw new Error(`Invalid currency pair format: ${pair}`)
+    }
+    const [from, to] = parts
     return { from, to }
   }
 
@@ -118,6 +109,7 @@ class AlphaVantageAPI {
         price,
         bid,
         ask,
+        spread: ask - bid,
         timestamp: new Date(rate['6. Last Refreshed']).getTime(),
         change: 0, // Will be calculated by comparing with previous data
         changePercent: 0 // Will be calculated by comparing with previous data
@@ -211,8 +203,8 @@ class AlphaVantageAPI {
   }
 
   // 複数通貨ペアの一括取得（効率化）
-  async getMultipleRates(pairs: CurrencyPair[]): Promise<Record<CurrencyPair, RealTimePriceData>> {
-    const results: Record<CurrencyPair, RealTimePriceData> = {}
+  async getMultipleRates(pairs: CurrencyPair[]): Promise<Partial<Record<CurrencyPair, RealTimePriceData>>> {
+    const results: Partial<Record<CurrencyPair, RealTimePriceData>> = {}
     
     // レート制限を考慮して順次実行
     for (const pair of pairs) {
@@ -239,6 +231,7 @@ class AlphaVantageAPI {
       price: Number(price.toFixed(pair.includes('JPY') ? 3 : 5)),
       bid: Number((price - spread/2).toFixed(pair.includes('JPY') ? 3 : 5)),
       ask: Number((price + spread/2).toFixed(pair.includes('JPY') ? 3 : 5)),
+      spread: Number(spread.toFixed(pair.includes('JPY') ? 3 : 5)),
       timestamp: Date.now(),
       change: (Math.random() - 0.5) * 0.01,
       changePercent: (Math.random() - 0.5) * 1

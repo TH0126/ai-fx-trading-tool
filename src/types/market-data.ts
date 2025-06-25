@@ -23,6 +23,7 @@ export interface CandleData {
 // リアルタイム価格データ
 export interface RealTimePriceData {
   symbol: CurrencyPair
+  price: number
   bid: number
   ask: number
   spread: number
