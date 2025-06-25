@@ -41,15 +41,25 @@ export default defineConfig({
   },
   build: {
     outDir: 'dist',
-    sourcemap: true,
-    chunkSizeWarningLimit: 1600,
+    sourcemap: false,
+    chunkSizeWarningLimit: 2000,
+    minify: 'esbuild',
     rollupOptions: {
+      maxParallelFileOps: 5,
       output: {
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          mui: ['@mui/material', '@mui/icons-material'],
-          charts: ['lightweight-charts'],
-          utils: ['axios', 'date-fns', 'zustand'],
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor';
+            }
+            if (id.includes('@mui')) {
+              return 'mui';
+            }
+            if (id.includes('lightweight-charts')) {
+              return 'charts';
+            }
+            return 'vendor';
+          }
         },
       },
     },
@@ -59,10 +69,9 @@ export default defineConfig({
       'react',
       'react-dom',
       '@mui/material',
-      '@mui/icons-material',
       'lightweight-charts',
-      'socket.io-client',
     ],
+    exclude: ['@mui/icons-material'],
   },
   define: {
     __DEV__: JSON.stringify(process.env.NODE_ENV === 'development'),
