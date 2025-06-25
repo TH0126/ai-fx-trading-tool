@@ -378,32 +378,42 @@ AI FXトレーディング支援ツールの開発プロジェクト管理ファ
 3. **パフォーマンステスト**は早期に実施
 4. **外部API制限**の実際の影響を早期検証
 
-### 🚀 **Vercel Deployment Setup** ✅ **設定完了** → **デプロイ待ち**
-- **完了項目**:
-  - ✅ vercel.json設定ファイル作成
-  - ✅ SPA対応のリライト設定
-  - ✅ Vite設定の柔軟性向上（環境変数対応）
-  - ✅ 404.htmlファイル作成（クライアントサイドルーティング対応）
-  - ✅ GitHub Actions workflow準備完了
-  - ✅ 設定コミット・プッシュ完了
+### 🚀 **Vercel CLI Deployment** ✅ **完了** (2025年1月25日)
+- **🎉 Vercel CLIデプロイメント成功！** ✅
+  - 本番環境URL: https://ai-fx-trading-tool-3be9vqgax-th0126s-projects.vercel.app
+  - 検査URL: https://vercel.com/th0126s-projects/ai-fx-trading-tool/GYQ4MVffZUvoBHVbvBc9EuqRVpvv
+  - ビルド時間: 15.33秒
+  - デプロイ完了時間: 37秒
 
-- **次のステップ（ユーザー操作）**:
-  1. **[Vercel.com](https://vercel.com)** にアクセス
-  2. GitHubでサインアップ/ログイン
-  3. 「New Project」をクリック
-  4. `TH0126/ai-fx-trading-tool` リポジトリを選択
-  5. 「Deploy」をクリック（設定は自動検出）
-  
-- **デプロイ予想時間**: 2-3分
-- **予想URL**: `https://ai-fx-trading-tool-xxx.vercel.app`
+- **解決した技術的問題**:
+  - ✅ ビルドエラー修正（EMFILE: too many open files）
+    - vite.config.tsのmaxParallelFileOps設定追加
+    - esbuild minifierに変更（terser削除）
+    - MUIアイコンの最適化
+  - ✅ Vercel設定最適化
+    - build:vercelコマンド追加（TypeScriptチェックなし）
+    - package.jsonのengines設定調整（Node.js 18.x）
+    - vercel.json無効プロパティ削除（nodeVersion）
 
-### 🔧 **Cloud Build Benefits**
-- ✅ ローカルファイルハンドル制限を回避
-- ✅ 自動ビルド・デプロイ
-- ✅ GitHub連携で継続的デプロイ
-- ✅ カスタムドメイン対応可能
+- **生成されたアセット**:
+  - index.html: 1.81 kB
+  - CSS: 1.04 kB  
+  - React vendor: 161.03 kB
+  - MUI: 252.51 kB
+  - Charts: 153.67 kB
+  - その他vendor: 135.06 kB
 
-### 🚀 **次のタスク**
+- **GitHubプッシュ履歴**:
+  - commit cc7c3a7: "Fix Vercel deployment configuration"
+  - commit fbcc5e8: "Remove invalid nodeVersion property from vercel.json"
+
+### 🔧 **次のタスク（優先順位順）**
+- [ ] 🟡 デプロイメント動作確認とテスト
+- [ ] 🟢 README.mdファイルの充実（デプロイURL追加）
+- [ ] 🟢 プロジェクト動作確認とデモ作成
+- [ ] ⚪ CI/CDパイプライン設定（GitHub Actions）
+
+### 🔧 **Browser Security Policy & API Issues 修正** ✅ **完了**
 
 ---
 
